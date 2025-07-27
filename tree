@@ -1,0 +1,56 @@
+/
+├── public/
+│   ├── index.html           # 拡張機能のポップアップUIのベースHTML
+│   ├── manifest.json        # Chrome拡張機能のマニフェストファイル
+│   └── icon16.png           # 拡張機能アイコン (16x16)
+│   └── icon48.png           # 拡張機能アイコン (48x48)
+│   └── icon128.png          # 拡張機能アイコン (128x128)
+│   └── background.js        # バックグラウンドスクリプト (APIキー保存など、必要に応じて)
+│   └── content_script.js    # コンテンツスクリプト (Webページ操作が必要な場合)
+│
+├── src/
+│   ├── index.js             # Reactアプリケーションのエントリーポイント
+│   ├── App.js               # メインコンポーネント、全体のレイアウトと状態管理
+│   │
+│   ├── components/          # UIコンポーネントを格納するディレクトリ
+│   │   ├── Sidebar.js       # サイドバーのナビゲーションと設定リンク
+│   │   ├── Editor.js        # テキスト入力、画像アップロード、送信ボタン
+│   │   ├── ImagePreview.js  # アップロードされた画像の表示
+│   │   ├── OutputPanel.js   # Gemini APIからの応答表示、シンタックスハイライト
+│   │   ├── StatusBar.js     # ステータス、エラーメッセージ表示
+│   │   └── common/          # 汎用的なUIコンポーネント (ボタン、入力フィールドなど)
+│   │       ├── Button.js
+│   │       └── Input.js
+│   │       └── LoadingSpinner.js
+│   │
+│   ├── pages/               # ルーティングが必要な場合のページコンポーネント (例: 設定画面)
+│   │   └── Settings.js      # APIキー設定フォーム
+│   │
+│   ├── services/            # API通信や外部サービス連携ロジック
+│   │   └── geminiApi.js     # Gemini APIとの通信を担当する関数群
+│   │   └── storage.js       # chrome.storage.localをラップするヘルパー関数
+│   │
+│   ├── hooks/               # カスタムReactフック
+│   │   └── useGeminiApi.js  # Gemini API呼び出しのロジックをカプセル化
+│   │   └── useImageUpload.js # 画像アップロードのロジックをカプセル化
+│   │
+│   ├── utils/               # ユーティリティ関数
+│   │   └── base64Converter.js # 画像をBase64に変換する関数
+│   │   └── syntaxHighlighter.js # シンタックスハイライトの初期化など
+│   │
+│   ├── assets/              # 静的アセット (画像、フォントなど)
+│   │   └── images/
+│   │   └── fonts/
+│   │
+│   ├── styles/              # グローバルスタイル、Tailwind CSSの設定など
+│   │   ├── index.css        # Tailwind CSSのインポートとカスタムCSS
+│   │   └── tailwind.config.js # Tailwind CSSの設定ファイル
+│   │
+│   └── context/             # グローバルな状態管理 (必要に応じて)
+│       └── AppContext.js    # 例: APIキー、テーマ設定など
+│
+├── .env                     # 環境変数ファイル (開発用APIキーなど)
+├── .gitignore               # Git管理から除外するファイル
+├── package.json             # プロジェクトのメタデータと依存関係
+├── package-lock.json        # 依存関係の正確なバージョンをロック
+├── README.md                # プロジェクトの説明とセットアップ手順
